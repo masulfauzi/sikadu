@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->uuid('id_guru');
             $table->enum('jenis_kelamin', ['l', 'p']);
-            $table->foreign('id_guru')->references('id')->on('guru')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_guru')->references('id')->on('guru')->onUpdate('cascade')->onDelete('restrict');
             $table->string('pekerjaan');
             $table->timestamps();
         });

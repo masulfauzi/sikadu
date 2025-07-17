@@ -16,9 +16,9 @@ return new class extends Migration
             $table->uuid('id_siswa');
             $table->uuid('id_semester');
             $table->uuid('id_kelas');
-            $table->foreign('id_siswa')->references('id')->on('siswa')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('id_semester')->references('id')->on('semester')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('id_kelas')->references('id')->on('kelas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_siswa')->references('id')->on('siswa')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('id_semester')->references('id')->on('semester')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('id_kelas')->references('id')->on('kelas')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
     }

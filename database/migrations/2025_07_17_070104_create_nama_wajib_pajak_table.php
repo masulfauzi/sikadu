@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id');
             $table->string('nama');
             $table->uuid('id_guru');
-            $table->foreign('id_guru')->references('id')->on('guru')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_guru')->references('id')->on('guru')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
     }

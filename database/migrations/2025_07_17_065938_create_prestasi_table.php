@@ -16,10 +16,10 @@ return new class extends Migration
             $table->uuid('id_siswa');
             $table->uuid('jenis_prestasi');
             $table->uuid('tingkat_prestasi');
-            $table->foreign('id_siswa')->references('id')->on('siswa')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_siswa')->references('id')->on('siswa')->onUpdate('cascade')->onDelete('restrict');
             $table->string('nama_prestasi');
-            $table->foreign('jenis_prestasi')->references('id')->on('jenis_prestasi')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('tingkat_prestasi')->references('id')->on('tingkat_prestasi')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('jenis_prestasi')->references('id')->on('jenis_prestasi')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('tingkat_prestasi')->references('id')->on('tingkat_prestasi')->onUpdate('cascade')->onDelete('restrict');
             $table->year('tahun');
             $table->string('penyelenggaraan');
             $table->timestamps();

@@ -17,13 +17,13 @@ return new class extends Migration
             $table->uuid('pekerjaan');
             $table->uuid('pendidikan');
             $table->uuid('penghasilan_bulanan');
-            $table->foreign('id_siswa')->references('id')->on('siswa')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_siswa')->references('id')->on('siswa')->onUpdate('cascade')->onDelete('restrict');
             $table->string('nama_wali');
             $table->string('tempat_lahir');
             $table->date('tgl_lahir');
-            $table->foreign('pekerjaan')->references('id')->on('pekerjaan')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('pendidikan')->references('id')->on('pendidikan')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('penghasilan_bulanan')->references('id')->on('penghasilan_bulanan')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('pekerjaan')->references('id')->on('pekerjaan')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('pendidikan')->references('id')->on('pendidikan')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('penghasilan_bulanan')->references('id')->on('penghasilan_bulanan')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
     }
