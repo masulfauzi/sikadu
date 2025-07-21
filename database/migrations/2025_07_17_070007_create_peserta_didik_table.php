@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('peserta_didik', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->uuid('id_siswa');
             $table->uuid('id_semester');
             $table->uuid('id_kelas');

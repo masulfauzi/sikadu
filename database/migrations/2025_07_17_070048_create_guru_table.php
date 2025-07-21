@@ -12,31 +12,32 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('guru', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->string('nama');
             $table->string('gelar_depan');
             $table->string('gelar_belakang');
-            $table->integer('nik');
+            $table->bigInteger('nik');
             $table->enum('jenis_kelamin', ['l', 'p']);
             $table->string('tempat_lahir');
             $table->date('tgl_lahir');
-            $table->uuid('alamat');
+            $table->uuid('id_desa');
+            $table->string('alamat');
             $table->uuid('agama');
             $table->uuid('status_perkawinan');
             $table->uuid('id_sekolah');
-            $table->foreign('alamat')->references('id')->on('desa')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('id_desa')->references('id')->on('desa')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('agama')->references('id')->on('agama')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('status_perkawinan')->references('id')->on('status_perkawinan')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('id_sekolah')->references('id')->on('sekolah')->onUpdate('cascade')->onDelete('restrict');
-            $table->integer('npwp');
+            $table->bigInteger('npwp');
             $table->uuid('jenis_gtk');
             $table->uuid('jabatan_gtk');
             $table->uuid('status_kepegawaian');
             $table->foreign('jenis_gtk')->references('id')->on('jenis_gtk')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('jabatan_gtk')->references('id')->on('jabatan_gtk')->onUpdate('cascade')->onDelete('restrict');
-            $table->integer('nuptk');
+            $table->bigInteger('nuptk');
             $table->foreign('status_kepegawaian')->references('id')->on('status_kepegawaian')->onUpdate('cascade')->onDelete('restrict');
-            $table->integer('nip');
+            $table->bigInteger('nip');
             $table->string('email');
             $table->timestamps();
         });

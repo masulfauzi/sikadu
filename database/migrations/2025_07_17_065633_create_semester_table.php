@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('semester', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->integer('semester');
+            $table->uuid('id')->primary();
+            $table->string('semester');
             $table->integer('urutan');
             $table->integer('is_akhir');
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
-            $table->integer('kode_semester');
+            $table->string('kode_semester');
             $table->timestamps();
         });
     }

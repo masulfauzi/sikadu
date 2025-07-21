@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('data_ayah', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->uuid('id_siswa');
             $table->uuid('pekerjaan');
             $table->uuid('pendidikan');
