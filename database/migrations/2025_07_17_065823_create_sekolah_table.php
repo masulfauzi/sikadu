@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string('nama_sekolah');
             $table->string('alamat');
             $table->bigInteger('no_telp');
-            $table->string('nama_kepsek');
-            $table->bigInteger('nlp_kepsek');
             $table->uuid('id_jenjang');
             $table->foreign('id_jenjang')->references('id')->on('jenjang')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();

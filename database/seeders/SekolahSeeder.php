@@ -22,8 +22,6 @@ class SekolahSeeder extends Seeder
             'nama_sekolah' => 'SMK Negeri 2 Semarang',
             'alamat' => 'Jl Dr Cipto',
             'no_telp' => '0851776',
-            'nama_kepsek' => 'Warno',
-            'nlp_kepsek' => '2008',
             'id_jenjang' => $data->id,
         ]);
     }
