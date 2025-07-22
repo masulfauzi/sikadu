@@ -18,7 +18,7 @@ class SemesterSeeder extends Seeder
             'id' => Str::uuid(),
             'semester' => 'Ganjil',
             'urutan' => '1',
-            'is_akhir' => '0',
+            'is_aktif' => '0',
             'tgl_mulai' => '2025-07-21',
             'tgl_selesai' => '2025-01-21',
             'kode_semester' => 'S1'
@@ -28,7 +28,7 @@ class SemesterSeeder extends Seeder
             'id' => Str::uuid(),
             'semester' => 'Genap',
             'urutan' => '2',
-            'is_akhir' => '0',
+            'is_aktif' => '0',
             'tgl_mulai' => '2025-01-25',
             'tgl_selesai' => '2025-07-25',
             'kode_semester' => 'S2'

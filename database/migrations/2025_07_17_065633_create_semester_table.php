@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('semester');
             $table->integer('urutan');
-            $table->integer('is_akhir');
+            $table->integer('is_aktif');
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
             $table->string('kode_semester');
