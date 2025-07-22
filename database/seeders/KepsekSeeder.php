@@ -18,12 +18,13 @@ class KepsekSeeder extends Seeder
         DB::table('kepsek')->insert([
             'id' => Str::uuid(),
             'nama' => 'Warno',
+            'nip' => '234567',
             'gelar_depan' => 'Dr.',
             'gelar_belakang' => 'S.H.',
             'id_sekolah' => $sk->id,
             'tgl_mulai' => '2020-08-21',
             'tgl_selesai' => '2025-08-23',
-            'is_active' => 'y',
+            'is_active' => '1',
         ]);
     }
 }
