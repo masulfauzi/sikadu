@@ -29,19 +29,20 @@ class UsersController extends Controller
 	{
 		$roles = Role::all()->pluck('role', 'id');
 		$data['forms'] = array(
-			'name' => ['Name', Form::text("name", old('name'), ["class" => "form-control","placeholder" => "", "required" => "required"])],
-			'username' => ['Username', Form::text("username", old('username'), ["class" => "form-control","placeholder" => "", "required" => "required"])],
-			'email' => ['Email', Form::text("email", old('email'), ["class" => "form-control","placeholder" => "", "required" => "required"])],
-			'password' => ['Password', Form::password("password", ["class" => "form-control","placeholder" => "", "required" => "required"])],
-			'identitas' => ['Kode Identitas', Form::text("identitas", old('identitas'), ["class" => "form-control", "placeholder" => "NIM,NIP,NRP,NIK,dll", "required" => "required"])],
-			'roles' => ['Role', Form::select("roles[]", $roles, null, ["class" => "form-control multi-select2","placeholder" => "", "required" => "required"])],
+			'name' => ['Name', html()->text('name', old('name'))->class('form-control')->placeholder('')->attribute('required')],
+			'username' => ['Username', html()->text('username', old('username'))->class('form-control')->placeholder('')->attribute('required')],
+			'email' => ['Email', html()->email('email', old('email'))->class('form-control')->placeholder('')->attribute('required')],
+			'password' => ['Password', html()->password('password')->class('form-control')->placeholder('')->attribute('required')],
+			'identitas' => ['Identitas', html()->text('identitas', old('identitas'))->class('form-control')->placeholder('')->attribute('required')],
+			// 'roles' => ['Role', Form::select("roles[]", $roles, null, ["class" => "form-control multi-select2","placeholder" => "", "required" => "required"])],
+			'roles' => ['Role', html()->select('roles[]', $roles, null)->class('form-control')->class('multi-select2')->placeholder('')->attribute('multiple')],
 		);
 		return view('Users::form_create', array_merge($data, ['title' => $this->title]));
 	}
 
 	function store(Request $request)
 	{
-		$this->validate($request, [
+		$validated = $request->validate([
 			'name' => 'required',
 			'username' => 'required|unique:users,username',
 			'email' => 'required|email',

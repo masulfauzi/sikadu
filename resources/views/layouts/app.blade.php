@@ -26,6 +26,9 @@
 
     <!-- Icons css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.5/css/selectize.bootstrap5.min.css" />
+
 </head>
 
 <body>
@@ -387,13 +390,15 @@
                                     <div class="row g-0">
                                         <div class="col">
                                             <a class="dropdown-icon-item" href="#">
-                                                <img src="{{ asset('assets/images/brands/slack.png') }}" alt="slack">
+                                                <img src="{{ asset('assets/images/brands/slack.png') }}"
+                                                    alt="slack">
                                                 <span>Slack</span>
                                             </a>
                                         </div>
                                         <div class="col">
                                             <a class="dropdown-icon-item" href="#">
-                                                <img src="{{ asset('assets/images/brands/github.png') }}" alt="Github">
+                                                <img src="{{ asset('assets/images/brands/github.png') }}"
+                                                    alt="Github">
                                                 <span>GitHub</span>
                                             </a>
                                         </div>
@@ -485,7 +490,8 @@
                                             <h6 class="m-0 font-16 fw-semibold"> Notification</h6>
                                         </div>
                                         <div class="col-auto">
-                                            <a href="javascript: void(0);" class="text-dark text-decoration-underline">
+                                            <a href="javascript: void(0);"
+                                                class="text-dark text-decoration-underline">
                                                 <small>Clear All</small>
                                             </a>
                                         </div>
@@ -698,8 +704,10 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div>
-                                <script>document.write(new Date().getFullYear())</script> © Ubold - <a
-                                    href="https://coderthemes.com/" target="_blank">Coderthemes.com</a>
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script> © Ubold - <a href="https://coderthemes.com/"
+                                    target="_blank">Coderthemes.com</a>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -812,7 +820,8 @@
                                 <div class="overflow-hidden">
                                     <h6 class="mt-0 mb-1 font-14">Rory Dalyell</h6>
                                     <div class="font-13 text-muted">
-                                        <p class="mb-0 text-truncate">To an English person, it will seem like simplified
+                                        <p class="mb-0 text-truncate">To an English person, it will seem like
+                                            simplified
                                         </p>
                                     </div>
                                 </div>
@@ -931,7 +940,8 @@
                                 <div class="overflow-hidden">
                                     <h6 class="mt-0 mb-1 font-14">Hayley East</h6>
                                     <div class="font-13 text-muted">
-                                        <p class="mb-0 text-truncate">One could refuse to pay expensive translators.</p>
+                                        <p class="mb-0 text-truncate">One could refuse to pay expensive translators.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -1004,7 +1014,8 @@
                     </div>
 
                     <div class="p-3 mt-2 d-grid">
-                        <a href="javascript: void(0);" class="btn btn-success waves-effect waves-light">Create Task</a>
+                        <a href="javascript: void(0);" class="btn btn-success waves-effect waves-light">Create
+                            Task</a>
                     </div>
 
                 </div>
@@ -1185,7 +1196,8 @@
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" name="data-sidenav-size"
                                     id="leftbar-size-fullscreen" value="fullscreen">
-                                <label class="form-check-label" for="leftbar-size-fullscreen">Fullscreen Layout</label>
+                                <label class="form-check-label" for="leftbar-size-fullscreen">Fullscreen
+                                    Layout</label>
                             </div>
                         </div>
                     </div>
@@ -1226,6 +1238,28 @@
 
     <!-- Dashboar 1 init js-->
     <script src="{{ asset('assets/js/pages/dashboard-1.init.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.5/js/standalone/selectize.min.js"></script>
+
+    <script>
+        $(".select2").selectize();
+        var $selectizeObj = $(".multi-select2").selectize({
+            maxItems: null
+        });
+
+        $(function() {
+
+            // wisiwig
+            richs = document.querySelectorAll('.rich-editor');
+            richs.forEach(element => {
+                ClassicEditor.create(element);
+            });
+
+            // datepicker
+            loadDatePicker('.datetimepicker');
+            loadDatePicker('.datepicker');
+        });
+    </script>
 
 </body>
 
