@@ -24,30 +24,41 @@
             </div>
 
             <section class="section">
-                <div class="card">
+                {{-- <div class="card">
                     <h5 class="card-header">
                         Tabel Data {{ $title }}
                     </h5>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-9">
+                            <div class="col-9"> --}}
+                <div class="row">         
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="header-title">
+                                Tabel Data {{ $title }}
+                            </h4>
+                            <div class="row">
+                                <div class="col-3">
                                 <form action="{{ route('users.index') }}" method="get">
-                                    <div class="form-group col-md-3 has-icon-left position-relative">
+                                    <div class="form-group has-icon-left position-relative">
                                         <input type="text" class="form-control" value="{{ request()->get('search') }}"
                                             name="search" placeholder="Search">
-                                        <div class="form-control-icon"><i class="fa fa-search"></i></div>
+                                        {{-- <div class="form-control-icon"><i class="fa fa-search"></i></div> --}}
                                     </div>
                                 </form>
-                            </div>
-                            <div class="col-3">
+                                </div>
+                                <div class="col-3">
                                 <a href="{{ route('users.create') }}"
-                                    class="btn btn-sm btn-primary icon icon-left rounded-pill float-end"><i
+                                    class="btn btn-sm btn-primary icon icon-left rounded-pill"><i
                                         class="fa fa-plus"></i> Tambah {{ $title }}</a>
+                                </div>
                             </div>
                         </div>
+                        <div class="card-body">
                         @include('include.flash')
-                        <div class="table-responsive-md col-12">
-                            <table class="table" id="table1">
+                       <div class="table-responsive">
+                                <table class="table mb-0">
                                 <thead>
                                     <tr>
                                         <th width="15">No</th>
@@ -81,11 +92,12 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                        </div>
+                            </div>   
                         {{ $data->links() }}
+                        </div>
+                        </div>
                     </div>
-                </div>
-
+                </div>       
             </section>
         </div>
 
