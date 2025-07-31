@@ -26,13 +26,13 @@ class MenuController extends Controller
 	public function index(Request $request)
 	{
 		$query = Menu::with('menuref');
-		if($request->has('search')){
+		if ($request->has('search')) {
 			$search = $request->get('search');
 			$query->where('menu', 'like', "%$search%");
 		}
 		$data['data'] = $query->paginate(10);
 
-		$this->log($request, 'melihat halaman manajemen data '.$this->title);
+		$this->log($request, 'melihat halaman manajemen data ' . $this->title);
 		return view('Menu::menu', array_merge($data, ['title' => $this->title]));
 	}
 
@@ -41,24 +41,25 @@ class MenuController extends Controller
 		$menus = Menu::where('level', '<', 2)->get()->pluck('menu', 'id');
 		$roles = Role::all()->pluck('role', 'id');
 		$data['forms'] = array(
-			'menu' => ['Menu', Form::text("menu", old("menu"), ["class" => "form-control","placeholder" => "Nama Menunya"]) ],
-			'icon' => ['Icon', Form::text("icon", old("icon"), ["class" => "form-control", "placeholder" => "Icon menu, ex: fa-book"]) ],
-			'is_tampil' => ['Tampil?', Form::select("is_tampil", ["1" => "Ya", "0" => "Tidak"], old("is_tampil"), ["class" => "form-control"]) ],
-			'level' => ['Level Hirarki', Form::select("level", ["0" => "Group Menu", "1" => "Menu", "2" => "Submenu"], null, ["class" => "form-control select2","placeholder" => "-- Pilih Level Menu"]) ],
-			'parent_id' => ['Parent Id', Form::select("parent_id", $menus, null, ["class" => "form-control select2","placeholder" => "-- Pilih Parent Menu"]) ],
-			'module' => ['Module', Form::text("module", old("module"), ["class" => "form-control","placeholder" => "Ex: user"]) ],
-			'routing' => ['Routing', Form::text("routing", old("routing"), ["class" => "form-control","placeholder" => "Ex: user.index"]) ],
-			'urutan' => ['Urutan', Form::number("urutan", old("urutan"), ["class" => "form-control","placeholder" => "n"]) ],
-			'roles' => ['Role', Form::select("roles[]", $roles, null, ["class" => "form-control multi-select2", "placeholder" => "Role ", "required" => "required"])],
+			'menu' => ['Menu', html()->text('menu', old('menu'))->class('form-control')->placeholder('')->attribute('required')],
+			'icon' => ['Icon', html()->text('icon', old('icon'))->class('form-control')->placeholder('')->attribute('required')],
+			'is_tampil' => ['Tampil?', html()->select('is_tampil', ["1" => "Ya", "0" => "Tidak"], old("is_tampil"))->class('select2')->placeholder('')->attribute('required')],
+			'level' => ['Level', html()->select('level', ["0" => "Group Menu", "1" => "Menu", "2" => "Submenu"], old("level"))->class('select2')->placeholder('')->attribute('required')],
+			'parent_id' => ['Parent Id', html()->select('parent_id', $menus, old("parent_id"))->class('select2')->placeholder('')->attribute('required')],
+			'module' => ['Module', html()->text('module', old("module"))->class('form-control')->placeholder('')->attribute('required')],
+			'routing' => ['Routing', html()->text('routing', old("routing"))->class('form-control')->placeholder('')->attribute('required')],
+			'urutan' => ['urutan', html()->text('urutan', old("urutan"))->class('form-control')->placeholder('')->attribute('required')],
+			// 'roles' => ['Role', Form::select("roles[]", $roles, null, ["class" => "form-control multi-select2", "placeholder" => "Role ", "required" => "required"])],
+			'roles' => ['roles', html()->multiselect('roles[]',$roles, old("roles"))->class('multi-select2')->placeholder('')->attribute('required')],
 		);
 
-		$this->log($request, 'membuka form tambah '.$this->title);
+		$this->log($request, 'membuka form tambah ' . $this->title);
 		return view('Menu::menu_create', array_merge($data, ['title' => $this->title]));
 	}
 
 	function store(Request $request)
 	{
-		$this->validate($request, [
+		$validated = $request->validate([
 			'icon' => 'required',
 			'is_tampil' => 'required',
 			'level' => 'required',
@@ -68,7 +69,7 @@ class MenuController extends Controller
 			'routing' => 'required',
 			'urutan' => 'required',
 			'roles' => 'required|array',
-			
+
 		]);
 
 		$menu = new Menu();
@@ -99,7 +100,7 @@ class MenuController extends Controller
 			$priv->save();
 		}
 
-		$this->log($request, 'membuat '.$this->title.' baru: '.$menu->menu, ['menu.id' => $menu->id]);
+		$this->log($request, 'membuat ' . $this->title . ' baru: ' . $menu->menu, ['menu.id' => $menu->id]);
 		return redirect()->route('menu.index')->with('message_success', 'Menu berhasil ditambahkan!');
 	}
 
@@ -111,18 +112,18 @@ class MenuController extends Controller
 		$menus = Menu::where('level', '<', 2)->get()->pluck('menu', 'id');
 		$data['selecteds'] = $selected;
 		$data['forms'] = array(
-			'menu' => ['Menu', Form::text("menu", $menu->menu, ["class" => "form-control","placeholder" => "", "id" => "menu"]) ],
-			'module' => ['Module', Form::text("module", $menu->module, ["class" => "form-control","placeholder" => "", "id" => "module"]) ],
-			'icon' => ['Icon', Form::text("icon", $menu->icon, ["class" => "form-control","placeholder" => "", "id" => "icon"]) ],
-			'is_tampil' => ['Tampilkan Menu?', Form::select("is_tampil", ["1" => "Ya", "0" => "Tidak"], $menu->is_tampil, ["class" => "form-control", "id" => "is_tampil"]) ],
-			'level' => ['Level Hirarki', Form::select("level", ["0" => "Group Menu", "1" => "Menu", "2" => "Submenu"], $menu->level, ["class" => "form-control select2", "placeholder" => "-- Pilih Level Menu"]) ],
-			'parent_id' => ['Parent Id', Form::select("parent_id", $menus, $menu->parent_id, ["class" => "form-control select2","placeholder" => "", "id" => "parent_id"]) ],
-			'routing' => ['Routing', Form::text("routing", $menu->routing, ["class" => "form-control","placeholder" => "", "id" => "routing"]) ],
-			'urutan' => ['Urutan', Form::text("urutan", $menu->urutan, ["class" => "form-control","placeholder" => "n", "id" => "urutan"]) ],
+			'menu' => ['Menu', Form::text("menu", $menu->menu, ["class" => "form-control", "placeholder" => "", "id" => "menu"])],
+			'module' => ['Module', Form::text("module", $menu->module, ["class" => "form-control", "placeholder" => "", "id" => "module"])],
+			'icon' => ['Icon', Form::text("icon", $menu->icon, ["class" => "form-control", "placeholder" => "", "id" => "icon"])],
+			'is_tampil' => ['Tampilkan Menu?', Form::select("is_tampil", ["1" => "Ya", "0" => "Tidak"], $menu->is_tampil, ["class" => "form-control", "id" => "is_tampil"])],
+			'level' => ['Level Hirarki', Form::select("level", ["0" => "Group Menu", "1" => "Menu", "2" => "Submenu"], $menu->level, ["class" => "form-control select2", "placeholder" => "-- Pilih Level Menu"])],
+			'parent_id' => ['Parent Id', Form::select("parent_id", $menus, $menu->parent_id, ["class" => "form-control select2", "placeholder" => "", "id" => "parent_id"])],
+			'routing' => ['Routing', Form::text("routing", $menu->routing, ["class" => "form-control", "placeholder" => "", "id" => "routing"])],
+			'urutan' => ['Urutan', Form::text("urutan", $menu->urutan, ["class" => "form-control", "placeholder" => "n", "id" => "urutan"])],
 			'roles' => ['Role', Form::select("roles[]", $roles, null, ["class" => "form-control multi-select2", "placeholder" => "Role ", "required" => "required"])],
 		);
 
-		$this->log($request, 'membuka form edit '.$this->title.' '.$menu->menu, ['menu.id' => $menu->id]);
+		$this->log($request, 'membuka form edit ' . $this->title . ' ' . $menu->menu, ['menu.id' => $menu->id]);
 		return view('Menu::menu_update', array_merge($data, ['title' => $this->title]));
 	}
 
@@ -137,9 +138,9 @@ class MenuController extends Controller
 			'parent_id' => 'required',
 			'routing' => 'required',
 			'urutan' => 'required',
-			
+
 		]);
-		
+
 		$menu = Menu::find($id);
 		$menuorg = $menu->toArray();
 		$menu->icon = $request->input("icon");
@@ -169,7 +170,7 @@ class MenuController extends Controller
 			$priv->save();
 		}
 
-		$this->log($request, 'mengedit '.$this->title.' '.$menu->menu, ['menu.id' => $menu->id], ['from' => $menuorg, 'to' => $menu]);
+		$this->log($request, 'mengedit ' . $this->title . ' ' . $menu->menu, ['menu.id' => $menu->id], ['from' => $menuorg, 'to' => $menu]);
 		return redirect()->route('menu.index')->with('message_success', 'Menu berhasil diubah!');
 	}
 
@@ -180,7 +181,7 @@ class MenuController extends Controller
 		$menu->save();
 		$menu->delete();
 
-		$this->log($request, 'menghapus '.$this->title.' '.$menu->menu, ['menu.id' => $menu->id]);
+		$this->log($request, 'menghapus ' . $this->title . ' ' . $menu->menu, ['menu.id' => $menu->id]);
 		return back()->with('message_success', 'Menu berhasil dihapus!');
 	}
 
