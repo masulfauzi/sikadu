@@ -73,16 +73,18 @@ class UsersController extends Controller
 	public function edit(Users $user)
 	{
 		$roles = Role::all()->pluck('role', 'id');
+		// dd($roles);
 		$selected_roles = UserRole::where('id_user', $user->id)->get()->pluck('id_role');
 		$data['selecteds'] = $selected_roles;
 		$data['user'] = $user;
 		$data['forms'] = array(
-			'name' => ['Name', Form::text("name", $user->name, ["class" => "form-control","placeholder" => "", "required" => "required"])],
-			'username' => ['Username', Form::text("username", $user->username, ["class" => "form-control","placeholder" => "", "required" => "required"])],
-			'email' => ['Email', Form::text("email", $user->email, ["class" => "form-control","placeholder" => "", "required" => "required"])],
-			'password' => ['Password', Form::password("password", ["class" => "form-control","placeholder" => "Kosongkan jika tidak ingin mengubah"])],
-			'identitas' => ['Kode Identitas', Form::text("identitas", $user->identitas, ["class" => "form-control","placeholder" => ""])],
-			'roles' => ['Role', Form::select("roles[]", $roles, $selected_roles, ["class" => "form-control multi-select2","placeholder" => "", "required" => "required"])],
+			'name' => ['Name', html()->text('name', $user->name)->class('form-control')->placeholder('')->attribute('required')],
+			'username' => ['Username', html()->text('username', $user->username)->class('form-control')->placeholder('')->attribute('required')],
+			'email' => ['Email', html()->email('email', $user->email)->class('form-control')->placeholder('')->attribute('required')],
+			'password' => ['Password', html()->password('password')->class('form-control')],
+			'identitas' => ['Identitas', html()->text('identitas', $user->identitas)->class('form-control')->placeholder('')],
+			// 'roles' => ['Role', Form::select("roles[]", $roles, $selected_roles, ["class" => "form-control multi-select2","placeholder" => "", "required" => "required"])],
+			'roles' => ['Role', html()->multiselect('roles[]', $roles, $selected_roles)->class('form-control')->class('multi-select2')->attribute('multiple')],
 		);
 
 		return view('Users::form_update', array_merge($data, ['title' => $this->title]));
@@ -90,15 +92,14 @@ class UsersController extends Controller
 
 	public function update(Request $request, $id)
 	{
-		$validation = array(
+		$validated = $request->validate([
 			'name' => 'required',
 			'email' => 'required|email',
 			'password' => 'nullable',
 			'username' => 'required',
 			'identitas' => 'nullable',
 			'roles' => 'required|array',
-		);
-		$this->validate($request, $validation);
+		]);
 		
 		$users = Users::find($id);
 		$users->name = $request->input("name");

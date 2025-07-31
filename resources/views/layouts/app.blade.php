@@ -29,6 +29,8 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.5/css/selectize.bootstrap5.min.css" />
 
+    <script src="{{ asset('assets/js/sweetalert.js') }}"></script>
+
 </head>
 
 <body>
@@ -1230,6 +1232,7 @@
 
     <!-- App js -->
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
+    <script src="{{ asset('assets/js/mine.js') }}"></script>
 
     <!-- Plugins js-->
     <script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
