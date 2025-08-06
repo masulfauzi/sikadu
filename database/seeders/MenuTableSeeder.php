@@ -23,7 +23,7 @@ class MenuTableSeeder extends Seeder
             'parent_id' => '-',
             'level'     => 0,
         ]);
-        $main = Menu::create([
+        $ref = Menu::create([
             'menu'      => 'Referensi',
             'module'    => 'no',
             'routing'   => 'no',
