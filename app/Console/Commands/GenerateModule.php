@@ -360,7 +360,7 @@ class GenerateModule extends Command
 
 		if ($attributes->referensi != null) {
 			$addRef = 'ref_';
-			$formBody = '{{ html()->select("' . $field_name . '", $' . $addRef . $attributes->referensi . ', null)->class("form-control") }}';
+			$formBody = '{{ html()->select("' . $field_name . '", $' . $addRef . $attributes->referensi . ', null)->class("form-control")->class("select2") }}';
 		} else {
 			$edit = $is_edit ? "$" . $module . "->" . $field_name : 'old("' . $field_name . '")';
 			switch ($attributes->tipe_data) {
