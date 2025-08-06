@@ -360,12 +360,12 @@ class GenerateModule extends Command
 
 		if ($attributes->referensi != null) {
 			$addRef = 'ref_';
-			$formBody = '{{ Form::select("' . $field_name . '", $' . $addRef . $attributes->referensi . ', null, ["class" => "form-control select2"]) }}';
+			$formBody = '{{ html()->select("' . $field_name . '", $' . $addRef . $attributes->referensi . ', null)->class("form-control") }}';
 		} else {
 			$edit = $is_edit ? "$" . $module . "->" . $field_name : 'old("' . $field_name . '")';
 			switch ($attributes->tipe_data) {
 				case 'integer':
-					$formBody = '{{ Form::number("' . $field_name . '", ' . $edit . ', ["class" => "form-control"' . $is_required . ']) }}';
+					$formBody = '{{ html()->number("' . $field_name . '", ' . $edit . ')->class("form-control") }}';
 					if ($attributes->length > 10) {
 						$formSize = 2;
 					} else {
@@ -374,41 +374,41 @@ class GenerateModule extends Command
 					break;
 
 				case 'text':
-					$formBody = '{{ Form::textarea("' . $field_name . '", ' . $edit . ', ["class" => "form-control rich-editor"]) }}';
+					$formBody = '{{ html()->textarea("' . $field_name . '", ' . $edit . ')->class("form-control") }}';
 					break;
 
 				case 'bigint':
-					$formBody = '{{ Form::text("' . $field_name . '", ' . $edit . ', ["class" => "form-control nominal","placeholder" => ""' . $is_required . ']) }}';
+					$formBody = '{{ html()->text("' . $field_name . '", ' . $edit . ')->class("form-control") }}';
 					$formSize = 4;
 					break;
 
 				case 'tinyint':
 					if (substr($field_name, 0, 3) == "is_") {
-						$formBody = '{{ Form::select("' . $field_name . '", ["1" => "Ya", "0" => "Tidak"], ' . $edit . ', ["class" => "form-control"' . $is_required . ']) }}';
+						$formBody = '{{ html()->select("' . $field_name . '", ["1" => "Ya", "0" => "Tidak"], ' . $edit . ')->class("form-control") }}';
 						$formSize = 1;
 					} else {
-						$formBody = '{{ Form::text("' . $field_name . '", ' . $edit . ', ["class" => "form-control","placeholder" => "n"' . $is_required . ']) }}';
+						$formBody = '{{ html()->text("' . $field_name . '", ' . $edit . ')->class("form-control") }}';
 						$formSize = 2;
 					}
 					break;
 
 				case 'date':
 					#$formBody = '{{ Form::date("'.$field_name.'", null, ["class" => "form-control"]) }}';
-					$formBody = '{{ Form::text("' . $field_name . '", ' . $edit . ', ["class" => "form-control datepicker"' . $is_required . ']) }}';
+					$formBody = '{{ html()->text("' . $field_name . '", ' . $edit . ')->class("form-control")->class("datepicker") }}';
 					$formSize = 2;
 					break;
 
 
 				case 'datetime':
 					#$formBody = '{{ Form::date("'.$field_name.'", null, ["class" => "form-control"]) }}';
-					$formBody = '{{ Form::text("' . $field_name . '", ' . $edit . ', ["class" => "form-control datetimepicker"' . $is_required . ']) }}';
+					$formBody = '{{ html()->text("' . $field_name . '", ' . $edit . ', ["class" => "form-control datetimepicker"' . $is_required . ']) }}';
 					$formSize = 4;
 					break;
 
 
 				case 'varchar':
 				case 'char':
-					$formBody = '{{ Form::text("' . $field_name . '", ' . $edit . ', ["class" => "form-control","placeholder" => "' . $attributes->catatan . '"' . $is_required . ']) }}';
+					$formBody = '{{ html()->text("' . $field_name . '", ' . $edit . ')->class("form-control") }}';
 					$formSize = round(($attributes->length > 100 ? 100 : $attributes->length) / 100 * 8);
 					if ($formSize < 1) {
 						$formSize = 1;
@@ -418,12 +418,12 @@ class GenerateModule extends Command
 					break;
 
 				default:
-					$formBody = '{{ Form::text("' . $field_name . '", ' . $edit . ', ["class" => "form-control","placeholder" => "' . $attributes->catatan . '"' . $is_required . ']) }}';
+					$formBody = '{{ html()->text("' . $field_name . '", ' . $edit . ')->class("form-control") }}';
 					break;
 			}
 
 			if ($field_name == 'urutan') {
-				$formBody = '{{ Form::text("' . $field_name . '", ' . $edit . ', ["class" => "form-control","placeholder" => "n"' . $is_required . ']) }}';
+				$formBody = '{{ html()->text("' . $field_name . '", ' . $edit . ', ["class" => "form-control","placeholder" => "n"' . $is_required . ']) }}';
 				$formSize = 1;
 			}
 		}

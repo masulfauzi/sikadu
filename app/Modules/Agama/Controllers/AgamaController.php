@@ -38,7 +38,7 @@ class AgamaController extends Controller
 	{
 		
 		$data['forms'] = array(
-			'agama' => ['Agama', Form::text("agama", old("agama"), ["class" => "form-control","placeholder" => "", "required" => "required"]) ],
+			'agama' => ['Agama', html()->text("agama", old("agama"))->class("form-control") ],
 			
 		);
 
@@ -48,7 +48,7 @@ class AgamaController extends Controller
 
 	function store(Request $request)
 	{
-		$this->validate($request, [
+		$request->validate([
 			'agama' => 'required',
 			
 		]);
@@ -79,7 +79,7 @@ class AgamaController extends Controller
 
 		
 		$data['forms'] = array(
-			'agama' => ['Agama', Form::text("agama", $agama->agama, ["class" => "form-control","placeholder" => "", "required" => "required", "id" => "agama"]) ],
+			'agama' => ['Agama', html()->text("agama", $agama->agama)->class("form-control") ],
 			
 		);
 
@@ -90,7 +90,7 @@ class AgamaController extends Controller
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request, [
+		$request->validate([
 			'agama' => 'required',
 			
 		]);
