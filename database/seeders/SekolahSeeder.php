@@ -18,8 +18,8 @@ class SekolahSeeder extends Seeder
 
         DB::table('sekolah')->insert([
             'id' => Str::uuid(),
-            'npsn' => '0301',
-            'nama_sekolah' => 'SMK Negeri 2 Semarang',
+            'npsn' => '12345678',
+            'nama_sekolah' => 'SMK Uji Coba',
             'alamat' => 'Jl Dr Cipto',
             'no_telp' => '0851776',
             'id_jenjang' => $data->id,

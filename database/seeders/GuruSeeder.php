@@ -17,7 +17,7 @@ class GuruSeeder extends Seeder
         $ag = DB::table('agama')->where('agama', 'Kristen')->first();
         $ds = DB::table('desa')->where('nama_desa', 'Kalilangse')->first();
         $sp = DB::table('status_perkawinan')->where('status', 'Sudah Menikah')->first();
-        $sk = DB::table('sekolah')->where('nama_sekolah', 'SMK Negeri 2 Semarang')->first();
+        $sk = DB::table('sekolah')->where('nama_sekolah', 'SMK Uji Coba')->first();
         $jegtk = DB::table('jenis_gtk')->where('jenis_gtk', 'Guru')->first();
         $jagtk = DB::table('jabatan_gtk')->where('jabatan_gtk', 'Guru Matematika')->first();
         $skp = DB::table('status_kepegawaian')->where('status', 'PNS')->first();

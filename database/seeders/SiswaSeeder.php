@@ -15,7 +15,7 @@ class SiswaSeeder extends Seeder
     public function run(): void
     {
         $sa = DB::table('sekolah_asal')->where('sekolah', 'SMP Yoannes XXIII')->first();
-        $sk = DB::table('sekolah')->where('nama_sekolah', 'SMK Negeri 2 Semarang')->first();
+        $sk = DB::table('sekolah')->where('nama_sekolah', 'SMK Uji Coba')->first();
         $ag = DB::table('agama')->where('agama', 'Kristen')->first();
         $ds = DB::table('desa')->where('nama_desa', 'Kalilangse')->first();
         $at = DB::table('alat_transportasi')->where('transportasi', 'Motor')->first();

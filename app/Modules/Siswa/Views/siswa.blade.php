@@ -43,7 +43,7 @@
                                 <div class="col-7">
                                 </div>
                                 <div class="col-2">
-                                    {!! button('siswa.create', $title) !!}  
+                                    {!! button('siswa.create', $title) !!}
                                 </div>
                             </div>
                         </div>
@@ -56,23 +56,13 @@
                                         <tr>
                                             <th width="15">No</th>
                                             <td>Nisn</td>
-								<td>Nis</td>
-								<td>Nama</td>
-								<td>Jenis Kelamin</td>
-								<td>Nik</td>
-								<td>Sekolah Asal</td>
-								<td>Sekolah</td>
-								<td>Tempat Lahir</td>
-								<td>Tgl Lahir</td>
-								<td>Agama</td>
-								<td>Desa</td>
-								<td>Alamat</td>
-								<td>Alat Transportasi</td>
-								<td>Jenis Tinggal</td>
-								<td>No Telp</td>
-								<td>Email</td>
-								<td>No Registrasi Akta Lahir</td>
-								
+                                            <td>Nis</td>
+                                            <td>Nama</td>
+                                            <td>Jenis Kelamin</td>
+                                            <td>Nik</td>
+                                            <td>Email</td>
+                                            <td>No Registrasi Akta Lahir</td>
+
                                             <th width="20%">Aksi</th>
                                         </tr>
                                     </thead>
@@ -82,25 +72,15 @@
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $item->nisn }}</td>
-									<td>{{ $item->nis }}</td>
-									<td>{{ $item->nama }}</td>
-									<td>{{ $item->jenis_kelamin }}</td>
-									<td>{{ $item->nik }}</td>
-									<td>{{ $item->sekolah_asal }}</td>
-									<td>{{ $item->id_sekolah }}</td>
-									<td>{{ $item->tempat_lahir }}</td>
-									<td>{{ $item->tgl_lahir }}</td>
-									<td>{{ $item->agama }}</td>
-									<td>{{ $item->id_desa }}</td>
-									<td>{{ $item->alamat }}</td>
-									<td>{{ $item->alat_transportasi }}</td>
-									<td>{{ $item->jenis_tinggal }}</td>
-									<td>{{ $item->no_telp }}</td>
-									<td>{{ $item->email }}</td>
-									<td>{{ $item->no_registrasi_akta_lahir }}</td>
-									
+                                                <td>{{ $item->nis }}</td>
+                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->jenis_kelamin }}</td>
+                                                <td>{{ $item->nik }}</td>
+                                                <td>{{ $item->email }}</td>
+                                                <td>{{ $item->no_registrasi_akta_lahir }}</td>
+
                                                 <td>
-                                                    {!! button('siswa.show','', $item->id) !!}
+                                                    {!! button('siswa.show', '', $item->id) !!}
                                                     {!! button('siswa.edit', $title, $item->id) !!}
                                                     {!! button('siswa.destroy', $title, $item->id) !!}
                                                 </td>

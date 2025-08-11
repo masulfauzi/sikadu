@@ -384,7 +384,7 @@ class GenerateModule extends Command
 
 				case 'tinyint':
 					if (substr($field_name, 0, 3) == "is_") {
-						$formBody = '{{ html()->select("' . $field_name . '", ["1" => "Ya", "0" => "Tidak"], ' . $edit . ')->class("form-control") }}';
+						$formBody = '{{ html()->select("' . $field_name . '", ["1" => "Ya", "0" => "Tidak"], ' . $edit . ')->class("form-control")->class("select2") }}';
 						$formSize = 1;
 					} else {
 						$formBody = '{{ html()->text("' . $field_name . '", ' . $edit . ')->class("form-control") }}';

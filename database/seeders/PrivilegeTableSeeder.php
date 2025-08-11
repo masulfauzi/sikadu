@@ -18,8 +18,9 @@ class PrivilegeTableSeeder extends Seeder
     public function run()
     {
         $menus = Menu::where('level', '<>', 0)->get();
+        $dashboard = Menu::where('menu', 'dashboard')->get();
         $role_superadmin = Role::where('role', 'Super Admin')->first();
-        $role_admin = Role::where('role', 'Admin')->first();
+        $role_admin = Role::where('role', 'Admin Sekolah')->first();
         foreach ($menus as $key => $value) {
             Privilege::create([
                 'id_role' => $role_superadmin->id,
@@ -31,15 +32,18 @@ class PrivilegeTableSeeder extends Seeder
                 'update' => 1,
                 'delete' => 1,
             ]);
+        }
+
+        foreach ($dashboard as $key => $value) {
             Privilege::create([
                 'id_role' => $role_admin->id,
                 'id_menu' => $value->id,
                 'show_menu' => 1,
-                'create' => 0,
+                'create' => 1,
                 'read' => 1,
-                'show' => 0,
-                'update' => 0,
-                'delete' => 0,
+                'show' => 1,
+                'update' => 1,
+                'delete' => 1,
             ]);
         }
     }

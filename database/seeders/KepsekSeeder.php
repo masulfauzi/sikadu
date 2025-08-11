@@ -14,7 +14,7 @@ class KepsekSeeder extends Seeder
      */
     public function run(): void
     {
-        $sk = DB::table('sekolah')->where('nama_sekolah', 'SMK Negeri 2 Semarang')->first();
+        $sk = DB::table('sekolah')->where('nama_sekolah', 'SMK Uji Coba')->first();
         DB::table('kepsek')->insert([
             'id' => Str::uuid(),
             'nama' => 'Warno',

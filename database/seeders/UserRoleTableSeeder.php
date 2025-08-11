@@ -22,8 +22,8 @@ class UserRoleTableSeeder extends Seeder
             'id_role' => Role::where('role', 'Super Admin')->first()->id
         ]);
         UserRole::create([
-            'id_user' => Users::where('email', 'superadmin@mail.com')->first()->id,
-            'id_role' => Role::where('role', 'Admin')->first()->id
+            'id_user' => Users::where('email', 'adminsekolah@mail.com')->first()->id,
+            'id_role' => Role::where('role', 'Admin Sekolah')->first()->id
         ]);
     }
 }
