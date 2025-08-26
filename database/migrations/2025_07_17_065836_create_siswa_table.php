@@ -18,25 +18,29 @@ return new class extends Migration
             $table->string('nama');
             $table->enum('jenis_kelamin', ['l','p']);
             $table->integer('nik');
-            $table->uuid('sekolah_asal');
+            $table->uuid('id_sekolah_asal');
             $table->uuid('id_sekolah');
-            $table->foreign('sekolah_asal')->references('id')->on('sekolah_asal')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('id_sekolah_asal')->references('id')->on('sekolah_asal')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('id_sekolah')->references('id')->on('sekolah')->onUpdate('cascade')->onDelete('restrict');
             $table->string('tempat_lahir');
             $table->date('tgl_lahir');
-            $table->uuid('agama');
+            $table->uuid('id_agama');
             $table->uuid('id_desa');
             $table->string('alamat');
-            $table->uuid('alat_transportasi');
-            $table->uuid('jenis_tinggal');
-            $table->foreign('agama')->references('id')->on('agama')->onUpdate('cascade')->onDelete('restrict');
+            $table->uuid('id_alat_transportasi');
+            $table->uuid('id_jenis_tinggal');
+            $table->foreign('id_agama')->references('id')->on('agama')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('id_desa')->references('id')->on('desa')->onUpdate('cascade')->onDelete('restrict');
-            $table->foreign('alat_transportasi')->references('id')->on('alat_transportasi')->onUpdate('cascade')->onDelete('restrict');
-            $table->foreign('jenis_tinggal')->references('id')->on('jenis_tinggal')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('id_alat_transportasi')->references('id')->on('alat_transportasi')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('id_jenis_tinggal')->references('id')->on('jenis_tinggal')->onUpdate('cascade')->onDelete('restrict');
             $table->bigInteger('no_telp');
             $table->string('email');
             $table->bigInteger('no_registrasi_akta_lahir');
             $table->timestamps();
+            $table->softDeletes();
+            $table->string('created_by', 36)->nullable();
+            $table->string('updated_by', 36)->nullable();
+            $table->string('deleted_by', 36)->nullable();
         });
     }
 

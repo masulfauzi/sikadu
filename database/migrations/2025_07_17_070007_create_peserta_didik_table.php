@@ -20,6 +20,10 @@ return new class extends Migration
             $table->foreign('id_semester')->references('id')->on('semester')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('id_kelas')->references('id')->on('kelas')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
+             $table->softDeletes();
+            $table->string('created_by', 36)->nullable();
+            $table->string('updated_by', 36)->nullable();
+            $table->string('deleted_by', 36)->nullable();
         });
     }
 

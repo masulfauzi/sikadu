@@ -17,6 +17,10 @@ return new class extends Migration
             $table->uuid('id_kabupaten');
             $table->foreign('id_kabupaten')->references('id')->on('kabupaten')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
+             $table->softDeletes();
+            $table->string('created_by', 36)->nullable();
+            $table->string('updated_by', 36)->nullable();
+            $table->string('deleted_by', 36)->nullable();
         });
     }
 

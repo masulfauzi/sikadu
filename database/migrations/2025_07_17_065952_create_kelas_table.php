@@ -20,6 +20,10 @@ return new class extends Migration
             $table->foreign('id_jurusan')->references('id')->on('jurusan')->onUpdate('cascade')->onDelete('restrict');
             $table->string('kode');
             $table->timestamps();
+             $table->softDeletes();
+            $table->string('created_by', 36)->nullable();
+            $table->string('updated_by', 36)->nullable();
+            $table->string('deleted_by', 36)->nullable();
         });
     }
 

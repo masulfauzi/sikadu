@@ -15,6 +15,10 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('jabatan_gtk');
             $table->timestamps();
+             $table->softDeletes();
+            $table->string('created_by', 36)->nullable();
+            $table->string('updated_by', 36)->nullable();
+            $table->string('deleted_by', 36)->nullable();
         });
     }
 

@@ -23,6 +23,10 @@ return new class extends Migration
             $table->date('tgl_selesai');
             $table->enum('is_active', ['0', '1']);
             $table->timestamps();
+             $table->softDeletes();
+            $table->string('created_by', 36)->nullable();
+            $table->string('updated_by', 36)->nullable();
+            $table->string('deleted_by', 36)->nullable();
         });
     }
 

@@ -63,6 +63,26 @@ class MenuTableSeeder extends Seeder
             'parent_id' => $main->id,
             'level'     => 1,
         ]);
+        $siswa = Menu::create([
+            'menu'      => 'Siswa',
+            'module'    => 'siswa',
+            'routing'   => 'siswa.index',
+            'is_tampil' => 1,
+            'icon'      => 'fa fa-users',
+            'urutan'    => 2,
+            'parent_id' => $main->id,
+            'level'     => 1,
+        ]);
+        Menu::create([
+            'menu'      => 'Daftar Siswa',
+            'module'    => 'siswa',
+            'routing'   => 'siswa.index',
+            'is_tampil' => 1,
+            'icon'      => 'fa fa-users',
+            'urutan'    => 2,
+            'parent_id' => $siswa->id,
+            'level'     => 2,
+        ]);
         // Menu::create([
         //     'menu'      => 'Konfigurasi',
         //     'module'    => 'config',

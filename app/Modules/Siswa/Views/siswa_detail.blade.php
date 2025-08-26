@@ -41,20 +41,20 @@
                             <div class="row">
                                 <div class="col-lg-10 offset-lg-2">
                                     <div class="row">
-                                        <div class='col-lg-2'><p>Nisn</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->nisn }}</p></div>
+                                    <div class='col-lg-2'><p>Nisn</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->nisn }}</p></div>
 									<div class='col-lg-2'><p>Nis</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->nis }}</p></div>
 									<div class='col-lg-2'><p>Nama</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->nama }}</p></div>
 									<div class='col-lg-2'><p>Jenis Kelamin</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->jenis_kelamin }}</p></div>
 									<div class='col-lg-2'><p>Nik</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->nik }}</p></div>
-									<div class='col-lg-2'><p>Sekolah Asal</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->sekolah_asal }}</p></div>
-									<div class='col-lg-2'><p>Sekolah</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->sekolah->id }}</p></div>
+									<div class='col-lg-2'><p>Sekolah Asal</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->sekolah_asal->sekolah }}</p></div>
+									<div class='col-lg-2'><p>Sekolah</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->sekolah->nama_sekolah }}</p></div>
 									<div class='col-lg-2'><p>Tempat Lahir</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->tempat_lahir }}</p></div>
 									<div class='col-lg-2'><p>Tgl Lahir</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->tgl_lahir }}</p></div>
-									<div class='col-lg-2'><p>Agama</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->agama }}</p></div>
-									<div class='col-lg-2'><p>Desa</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->desa->id }}</p></div>
+									<div class='col-lg-2'><p>Agama</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->agama->agama }}</p></div>
+									<div class='col-lg-2'><p>Desa</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->desa->nama_desa }}</p></div>
 									<div class='col-lg-2'><p>Alamat</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->alamat }}</p></div>
-									<div class='col-lg-2'><p>Alat Transportasi</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->alat_transportasi }}</p></div>
-									<div class='col-lg-2'><p>Jenis Tinggal</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->jenis_tinggal }}</p></div>
+									<div class='col-lg-2'><p>Alat Transportasi</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->alat_transportasi->transportasi }}</p></div>
+									<div class='col-lg-2'><p>Jenis Tinggal</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->jenis_tinggal->jenis_tinggal }}</p></div>
 									<div class='col-lg-2'><p>No Telp</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->no_telp }}</p></div>
 									<div class='col-lg-2'><p>Email</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->email }}</p></div>
 									<div class='col-lg-2'><p>No Registrasi Akta Lahir</p></div><div class='col-lg-10'><p class='fw-bold'>{{ $siswa->no_registrasi_akta_lahir }}</p></div>
