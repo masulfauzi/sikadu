@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 use App\Modules\Sekolah\Models\Sekolah;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\Modules\SekolahAsal\Models\SekolahAsal;
 use App\Modules\JenisTinggal\Models\JenisTinggal;
 use App\Modules\AlatTransportasi\Models\AlatTransportasi;
+use Illuminate\Support\Facades\Date;
+use PhpOffice\PhpSpreadsheet\Shared\Date as SharedDate;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class SiswaController extends Controller
 {
@@ -91,11 +95,73 @@ class SiswaController extends Controller
 
 	public function import(Request $request)
 	{	
-		$request->validate([
-			'file' => 'required|mimes:xlsx,xls,csv'
-		]);
+		$inputFileType = 'Xlsx';
+		$inputFileName = $request->file('excel');
+
+		// dd($request->file('excel'));
+
+		$reader = IOFactory::createReader($inputFileType);
+		$spreadsheet = $reader->load($inputFileName);
+		$worksheet = $spreadsheet->getActiveSheet();
+
+		$dataArray = $worksheet->toArray();
+		unset($dataArray[0]);
+
+	foreach ($dataArray as $dataSiswa) {
+
+		if (count(array_filter($dataSiswa, function ($value) {
+        return $value !== null;
+    	})) === 0) {
+        break;    
+   		}
+
+		$nisn = $dataSiswa[0];
+		$nis = $dataSiswa[1];
+		$nama = $dataSiswa[2];
+		$jenis_kelamin = $dataSiswa[3];
+		$nik = $dataSiswa[4];
+		$sekolahAsal = SekolahAsal::all()->where('sekolah', $dataSiswa[5])->first();
+		$id_sekolah_asal = $sekolahAsal ? $sekolahAsal->id : null;
+		$sekolah = Sekolah::all()->where('nama_sekolah', $dataSiswa[6])->first();
+		$id_sekolah = $sekolah ? $sekolah->id : null;
+		$tempat_lahir = $dataSiswa[7];
+		$tgl_lahir = $dataSiswa[8];
+		$tgl_lahir = SharedDate::excelToDateTimeObject($dataSiswa[8])->format('Y-m-d');
+		$agama = Agama::all()->where('agama', $dataSiswa[9])->first();
+		$id_agama = $agama ? $agama->id : null;
+		$desa = Desa::all()->where('nama_desa', $dataSiswa[10])->first();
+		$id_desa = $desa ? $desa->id : null;
+		$alamat = $dataSiswa[11];
+		$alat_transportasi = AlatTransportasi::all()->where('transportasi', $dataSiswa[12])->first();
+		$id_alat_transportasi = $alat_transportasi ? $alat_transportasi->id : null;
+		$jenis_tinggal = JenisTinggal::all()->where('jenis_tinggal', $dataSiswa[13])->first();
+		$id_jenis_tinggal = $jenis_tinggal ? $jenis_tinggal->id : null;
+		$no_telp = $dataSiswa[14];
+		$email = $dataSiswa[15];
+		$no_registrasi_akta_lahir = $dataSiswa[16];
+    	
+		$siswa = new Siswa();
+		$siswa->nisn = $nisn;
+		$siswa->nis = $nis;
+		$siswa->nama = $nama;
+		$siswa->jenis_kelamin = $jenis_kelamin;
+		$siswa->nik = $nik;
+		$siswa->id_sekolah_asal = $id_sekolah_asal;
+		$siswa->id_sekolah = $id_sekolah;
+		$siswa->tempat_lahir = $tempat_lahir;
+		$siswa->tgl_lahir = $tgl_lahir;
+		$siswa->id_agama = $id_agama;
+		$siswa->id_desa = $id_desa;
+		$siswa->alamat = $alamat;
+		$siswa->id_alat_transportasi = $id_alat_transportasi;
+		$siswa->id_jenis_tinggal = $id_jenis_tinggal;
+		$siswa->no_telp = $no_telp;
+		$siswa->email = $email;
+		$siswa->no_registrasi_akta_lahir = $no_registrasi_akta_lahir;
 		
-		Excel::import(new SiswaImport, $request->file('file'));
+		$siswa->created_by = Auth::id();
+		$siswa->save();
+	}
         return redirect()->route('siswa.upload.create')->with('success', 'Data Berhasil Diimpor');
 	}
 

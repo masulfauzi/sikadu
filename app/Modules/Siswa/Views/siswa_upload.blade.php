@@ -46,7 +46,7 @@
                                 <div class="form-body">
                                     @csrf 
                                     <label>Pilih File Excel : </label>
-                                    <input type="file" name="file" required>
+                                    <input type="file" name="excel" required>
                                     <div class="offset-md-3 ps-2">
                                         <button class="btn btn-primary" type="submit" name="submit">Simpan</button> &nbsp;
                                         <a href="{{ route('siswa.index') }}" class="btn btn-secondary">Batal</a>
