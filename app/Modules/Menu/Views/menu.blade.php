@@ -5,20 +5,20 @@
 
 @section('main')
 <div class="page-heading">
-    <div class="page-title">
-        <div class="row mb-2">
-            <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Manajemen Data {{ $title }}</h3>
-            </div>
-            <div class="col-12 col-md-6 order-md-2 order-first">
-                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                    <ol class="breadcrumb">
+    <div class="row">
+        <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                {{-- <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end"> --}}
+                    <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
                     </ol>
-                </nav>
+                    {{-- </nav> --}}
             </div>
-        </div>
+            <h3 class="page-title">Manajemen Data {{ $title }}</h3>
+        </div>  
+        </div>  
     </div>
 
     <section class="section">
@@ -27,12 +27,12 @@
                 Tabel Data {{ $title }}
             </h6>
             <div class="card-body">
-                <div class="row">
+                <div class="row mb-4">
                     <div class="col-9">
                         <form action="{{ route('menu.index') }}" method="get">
                             <div class="form-group col-md-3 has-icon-left position-relative">
                                 <input type="text" class="form-control" value="{{ request()->get('search') }}" name="search" placeholder="Search">
-                                <div class="form-control-icon"><i class="fa fa-search"></i></div>
+                                {{-- <div class="form-control-icon"><i class="fa fa-search"></i></div> --}}
                             </div>
                         </form>
                     </div>
