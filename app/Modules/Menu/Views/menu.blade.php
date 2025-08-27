@@ -9,12 +9,12 @@
         <div class="col-12">
         <div class="page-title-box">
             <div class="page-title-right">
-                {{-- <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end"> --}}
+                <nav>
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
                     </ol>
-                    {{-- </nav> --}}
+                </nav>
             </div>
             <h3 class="page-title">Manajemen Data {{ $title }}</h3>
         </div>  
